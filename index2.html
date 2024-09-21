@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLACEHOLDER TITLE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/2b9cdc1c9a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --text-color: #264653;
+            --white: #ffffff;
+            --color-dark-green: #465C54;
+            --color-teal: #90B6B4;
+            --color-white: #F6F9F8;
+            --color-peach: #E8AE70;
+            --color-orange: #CE5B37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Atkinson Hyperlegible, sans-serif;
+            background: linear-gradient(to left, var(--color-teal) 50%, var(--color-white) 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--color-orange);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-white);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            padding: 2rem;
+            gap: 4rem;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .left-column,
+        .right-column {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-column {
+            background-color: var(--white);
+            border-radius: 1rem;
+            border: var(--color-orange) .25rem solid;
+        }
+
+        h1, h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-peach);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: var(--color-peach);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--color-teal);
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: flex;
+        }
+
+        #chartContainer {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+
+        #aiAssistant {
+            background-color: var(--color-white);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--color-teal);
+        }
+
+        .typing {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0;
+            letter-spacing: .15em;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">PLACEHOLDER TITLE</div>
+    </header>
+    <main>
+        <div class="content active" id="content1">
+            <section class="left-column">
+                <h1>Welcome to PLACEHOLDER TITLE</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis ducimus minus et earum deleniti
+                    alias voluptate dignissimos laudantium illo quisquam nam illum neque, modi mollitia optio impedit
+                    voluptatem eum!</p>
+            </section>
+            <section class="right-column">
+                <h2>Get Started</h2>
+                <form id="userForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="age">Age:</label>
+                    <select id="age" name="age" required>
+                        <option value="">Select your age</option>
+                        <script>
+                            for (let i = 18; i <= 100; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+
+                    <label for="sex">Biological Sex:</label>
+                    <select id="sex" name="sex" required>
+                        <option value="">Select your biological sex</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <button type="submit" id="startButton">Let's get started!</button>
+                </form>
+            </section>
+        </div>
+        <div class="content" id="content2">
+            <section class="left-column">
+                <h2>New Left Column</h2>
+                <p>This is some placeholder text for the new left column. It can contain information about the next steps or additional details about the service.</p>
+            </section>
+            <section class="right-column">
+                <h2>New Right Column</h2>
+                <p>Here's some placeholder text for the new right column. This could include form fields for more detailed information or instructions for the next part of the process.</p>
+                <button id="showAnalysisButton">Show Analysis</button>
+            </section>
+        </div>
+        <div class="content" id="content3">
+            <section class="left-column">
+                <h2>Session Analysis</h2>
+                <div id="chartContainer">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </section>
+            <section class="right-column">
+                <h2>AI Assistant</h2>
+                <div id="aiAssistant"></div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const content1 = document.getElementById('content1');
+        const content2 = document.getElementById('content2');
+        const content3 = document.getElementById('content3');
+        const form = document.getElementById('userForm');
+        const startButton = document.getElementById('startButton');
+        const showAnalysisButton = document.getElementById('showAnalysisButton');
+        const aiAssistant = document.getElementById('aiAssistant');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            content1.classList.remove('active');
+            content2.classList.add('active');
+        });
+
+        showAnalysisButton.addEventListener('click', function() {
+            content2.classList.remove('active');
+            content3.classList.add('active');
+            initChart();
+            typeText("Hello! I'm your AI assistant. I've analyzed your session data and I'm here to provide insights and answer any questions you may have.");
+        });
+
+        function initChart() {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Progress',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderColor: 'rgb(206, 91, 55)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function typeText(text) {
+            const p = document.createElement('p');
+            p.classList.add('typing');
+            aiAssistant.appendChild(p);
+
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    p.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                } else {
+                    p.classList.remove('typing');
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+
+</html>

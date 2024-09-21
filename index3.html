@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLACEHOLDER TITLE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/2b9cdc1c9a.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --text-color: #264653;
+            --white: #ffffff;
+
+            --color-dark-green: #465C54;
+            --color-teal: #90B6B4;
+            --color-white: #F6F9F8;
+            --color-peach: #E8AE70;
+            --color-orange: #CE5B37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Atkinson Hyperlegible, sans-serif;
+            background: linear-gradient(to left, var(--color-teal) 50%, var(--color-white) 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        p {
+            font-family: Atkinson Hyperlegible, sans-serif;
+        }
+
+        header {
+            background-color: var(--color-orange);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-white);
+            display: flex;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            padding: 2rem;
+            gap: 4rem;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .left-column,
+        .right-column {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-column {
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .right-column {
+            background-color: var(--white);
+            border-radius: 1rem;
+            animation: slideInRight 0.5s ease-out;
+            border: var(--color-orange) .25rem solid;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-peach);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: var(--color-peach);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--color-teal);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .chatbot-panel {
+            flex: 1;
+            background-color: var(--color-teal);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .option-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .meds-panel, .pt-panel {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            PLACEHOLDER TITLE
+        </div>
+    </header>
+    <main>
+        <section class="left-column chatbot-panel">
+            <h2>Chatbot</h2>
+            <p>This is where the chatbot will live.</p>
+        </section>
+
+        <section class="right-column option-panel">
+            <h2>Select an Option</h2>
+            <div class="option-buttons">
+                <button id="medsButton">MEDS</button>
+                <button id="ptButton">PT</button>
+            </div>
+        </section>
+
+        <section class="right-column meds-panel">
+            <h2>MEDS Information</h2>
+            <p>Details about medication will go here.</p>
+        </section>
+
+        <section class="right-column pt-panel">
+            <h2>PT Information</h2>
+            <p>Details about physical therapy will go here.</p>
+        </section>
+    </main>
+
+    <script>
+        const medsButton = document.getElementById('medsButton');
+        const ptButton = document.getElementById('ptButton');
+        const optionPanel = document.querySelector('.option-panel');
+        const medsPanel = document.querySelector('.meds-panel');
+        const ptPanel = document.querySelector('.pt-panel');
+
+        medsButton.addEventListener('click', function () {
+            optionPanel.style.display = 'none';
+            medsPanel.style.display = 'flex';
+        });
+
+        ptButton.addEventListener('click', function () {
+            optionPanel.style.display = 'none';
+            ptPanel.style.display = 'flex';
+        });
+    </script>
+</body>
+
+</html>
