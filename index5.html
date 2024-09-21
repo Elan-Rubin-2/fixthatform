@@ -157,6 +157,7 @@
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
+        /*
 
         .option-buttons {
             display: none;
@@ -185,6 +186,58 @@
         #ptButton:hover {
             background-color: var(--color-white);
         }
+        */
+        .option-buttons {
+    display: none;  /* Kept as requested */
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: white;
+}
+
+#medsButton,
+#ptButton {
+    flex: 1;
+    background-color: white;
+    border: 0.0625rem solid #e0e0e0;  /* 1px to rem */
+    border-radius: 0.75rem;  /* 12px to rem */
+    padding: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+    min-height: 15.625rem;  /* 250px to rem */
+}
+
+#medsButton::before,
+#ptButton::before {
+    content: '';
+    width: 12.5rem;  /* 200px to rem */
+    height: 12.5rem;  /* 200px to rem */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#medsButton::before {
+    background-image: url(meds_penapps_design.png);
+}
+
+#ptButton::before {
+    background-image: url(pt_penapps_design.png);
+}
+
+#medsButton:hover,
+#ptButton:hover {
+    box-shadow: 0 0 0.9375rem rgba(0,0,0,0.1);  /* 15px to rem */
+}
+
+.right-column {
+    background-color: white;
+    border: none;
+    box-shadow: none;
+}
     </style>
 </head>
 
