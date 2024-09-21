@@ -8,7 +8,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/2b9cdc1c9a.js" crossorigin="anonymous"></script>
 
@@ -123,12 +125,6 @@
             background-color: var(--color-orange);
         }
 
-        .option-buttons {
-            display: none;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
         .meds-panel,
         .pt-panel {
             display: none;
@@ -160,6 +156,34 @@
         label {
             margin-bottom: 0.5rem;
             font-weight: bold;
+        }
+
+        .option-buttons {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+
+        }
+
+        #medsButton {
+            background-image: url(meds_penapps_design.png);
+        }
+
+        #ptButton {
+            background-image: url(pt_penapps_design.png);
+        }
+
+        #medsButton,
+        #ptButton {
+            flex: 1;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #medsButton:hover,
+        #ptButton:hover {
+            background-color: var(--color-white);
         }
     </style>
 </head>
@@ -204,19 +228,21 @@
                 </form>
             </div>
             <div class="option-buttons">
-                <button id="medsButton">MEDS</button>
-                <button id="ptButton">PT</button>
+                <button id="medsButton"></button>
+                <button id="ptButton"></button>
             </div>
         </section>
 
         <section class="right-column meds-panel">
             <h2>MEDS Information</h2>
             <p>Details about medication will go here.</p>
+            <button id="backToOptions" class="back-button">Back</button>
         </section>
 
         <section class="right-column pt-panel">
             <h2>PT Information</h2>
             <p>Details about physical therapy will go here.</p>
+            <button id="backToOptions" class="back-button">Back</button>
         </section>
     </main>
 
@@ -231,8 +257,8 @@
         const optionPanel = document.querySelector('.option-panel');
         const medsPanel = document.querySelector('.meds-panel');
         const ptPanel = document.querySelector('.pt-panel');
+        const backButton = document.getElementById('backToOptions');
 
-        // Function to check if all form fields are filled
         function checkFormCompletion() {
             const allFilled = Array.from(inputs).every(input => input.value !== '');
             startButton.style.display = allFilled ? 'block' : 'none';
@@ -242,25 +268,26 @@
             input.addEventListener('input', checkFormCompletion);
         });
 
-        // Form submission to show option buttons
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            // Hide welcome buttons
             welcomeButtons.style.display = 'none';
-            // Show option buttons
             optionButtons.style.display = 'flex';
         });
 
-        // Handle MEDS button click
         medsButton.addEventListener('click', function () {
-            optionPanel.style.display = 'none';  // Hide option buttons
-            medsPanel.style.display = 'flex';    // Show MEDS panel
+            optionPanel.style.display = 'none'; 
+            medsPanel.style.display = 'flex';    
         });
 
-        // Handle PT button click
         ptButton.addEventListener('click', function () {
-            optionPanel.style.display = 'none';  // Hide option buttons
-            ptPanel.style.display = 'flex';      // Show PT panel
+            optionPanel.style.display = 'none'; 
+            ptPanel.style.display = 'flex';      
+        });
+
+        backButton.addEventListener('click', function () {
+            medsPanel.style.display = 'none'; 
+            ptPanel.style.display = 'none';    
+            optionButtons.style.display = 'flex'; 
         });
     </script>
 </body>
