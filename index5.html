@@ -238,6 +238,67 @@
     border: none;
     box-shadow: none;
 }
+
+        /* meds panel */
+        #medication-panel {
+            width: 300px;
+            height: 100vh;
+            background-color: var(--color-white);
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        #add-medication {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: var(--color-peach);
+            color: var(--color-white);
+            border: none;
+            cursor: pointer;
+        }
+
+        .medication {
+            background-color: var(--color-white);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+
+        .days {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .days label {
+            display: flex;
+            align-items: center;
+        }
+
+        #submit-log {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: var(--color-teal);
+            color: var(--color-white);
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -287,9 +348,13 @@
         </section>
 
         <section class="right-column meds-panel">
-            <h2>MEDS Information</h2>
+            <!-- <h2>MEDS Information</h2>
             <p>Details about medication will go here.</p>
-            <button id="backToOptions" class="back-button">Back</button>
+            <button id="backToOptions" class="back-button">Back</button> -->
+            <h2>Medication Tracker</h2>
+            <button id="add-medication">+ Add Medication</button>
+            <div id="medication-list"></div>
+            <button id="submit-log">Submit Log</button>
         </section>
 
         <section class="right-column pt-panel">
@@ -328,20 +393,85 @@
         });
 
         medsButton.addEventListener('click', function () {
-            optionPanel.style.display = 'none'; 
-            medsPanel.style.display = 'flex';    
+            optionPanel.style.display = 'none';
+            medsPanel.style.display = 'flex';
         });
 
         ptButton.addEventListener('click', function () {
-            optionPanel.style.display = 'none'; 
-            ptPanel.style.display = 'flex';      
+            optionPanel.style.display = 'none';
+            ptPanel.style.display = 'flex';
         });
 
         backButton.addEventListener('click', function () {
-            medsPanel.style.display = 'none'; 
-            ptPanel.style.display = 'none';    
-            optionButtons.style.display = 'flex'; 
+            medsPanel.style.display = 'none';
+            ptPanel.style.display = 'none';
+            optionButtons.style.display = 'flex';
         });
+
+        // medication log
+        const addMedicationBtn = document.getElementById('add-medication');
+        const medicationList = document.getElementById('medication-list');
+        const submitLogBtn = document.getElementById('submit-log');
+
+        addMedicationBtn.addEventListener('click', addMedication);
+        submitLogBtn.addEventListener('click', submitLog);
+
+        function addMedication() {
+            const medicationDiv = document.createElement('div');
+            medicationDiv.className = 'medication';
+
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.placeholder = 'Medication Name';
+            medicationDiv.appendChild(nameInput);
+
+            const daysDiv = document.createElement('div');
+            daysDiv.className = 'days';
+            const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+            days.forEach(day => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(day));
+                daysDiv.appendChild(label);
+            });
+            medicationDiv.appendChild(daysDiv);
+
+            const timeSelect = document.createElement('select');
+            const option1 = document.createElement('option');
+            option1.value = 'Morning';
+            const option2 = document.createElement('option');
+            option1.value = 'Day';
+            const option3 = document.createElement('option');
+            option1.value = 'Night';
+            timeSelect.appendChild(option1);
+            timeSelect.appendChild(option2);
+            timeSelect.appendChild(option3);
+            medicationDiv.appendChild(timeSelect);
+
+            medicationList.appendChild(medicationDiv);
+        }
+
+        function submitLog() {
+            const medications = document.querySelectorAll('.medication');
+            let log = [];
+
+            medications.forEach(med => {
+                const name = med.querySelector('input[type="text"]').value;
+                const days = Array.from(med.querySelectorAll('.days input[type="checkbox"]'))
+                    .map((checkbox, index) => checkbox.checked ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index] : null)
+                    .filter(day => day !== null);
+                const frequency = med.querySelector('select').value;
+                const time = med.querySelectorAll('select')[1].value;
+
+                log.push(`${name} | Days: ${days.join(',')} | ${frequency} time(s) per day | Time: ${time}`);
+            });
+
+            const logString = log.join('\n');
+            console.log(logString); 
+            alert('Medication log submitted!');
+        }
     </script>
 </body>
 
