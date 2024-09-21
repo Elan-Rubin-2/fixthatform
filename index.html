@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLACEHOLDER TITLE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --text-color: #264653;
+            --white: #ffffff;
+
+            --color-dark-green: #465C54;
+            --color-teal: #90B6B4;
+            --color-white: #F6F9F8;
+            --color-peach: #E8AE70;
+            --color-orange: #CE5B37;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Atkinson Hyperlegible, sans-serif;
+            /* background-color: var(--color-white); */
+            background: linear-gradient(to left, var(--color-teal) 50%, var(--color-white) 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        p {
+            font-family: Atkinson Hyperlegible, sans-serif;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            /* box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); */
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-peach);
+        }
+
+        nav a {
+            margin-left: 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-peach);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            padding: 2rem;
+        }
+
+        .left-column,
+        .right-column {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-column {
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .right-column {
+            background-color: var(--white);
+            border-radius: 1rem;
+            /* box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); */
+            animation: slideInRight 0.5s ease-out;
+            border: var(--color-orange) .25rem solid;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-peach);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        #careImage {
+            width: 100%;
+            height: 15rem;
+            background-color: var(--color-teal);
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid var(--color-teal);
+            border-radius: 0.25rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-peach);
+        }
+
+        button {
+            background-color: var(--color-peach);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--color-teal);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">PLACEHOLDER TITLE</div>
+        <!-- <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav> -->
+    </header>
+    <main>
+        <section class="left-column">
+            <img id="careImage" src="Untitled design (1).png" alt="">
+
+            <!-- <div class="image-placeholder"></div> -->
+            <h1>Welcome to PLACEHOLDER TITLE</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis ducimus minus et earum deleniti
+                alias voluptate dignissimos laudantium illo quisquam nam illum neque, modi mollitia optio impedit
+                voluptatem eum!</p>
+        </section>
+        <section class="right-column">
+            <h2>Get Started</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="age">Age:</label>
+                <select id="age" name="age" required>
+                    <option value="">Select your age</option>
+                    <script>
+                        for (let i = 18; i <= 100; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+
+                <label for="sex">Biological Sex:</label>
+                <select id="sex" name="sex" required>
+                    <option value="">Select your biological sex</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <button type="submit">Let's get started!</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
