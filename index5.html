@@ -1084,68 +1084,89 @@
         submitLogBtn.addEventListener('click', submitLog);
 
         function addMedication() {
-            const medicationDiv = document.createElement('div');
-            medicationDiv.className = 'medication';
+    const medicationDiv = document.createElement('div');
+    medicationDiv.className = 'medication';
 
-            const nameInput = document.createElement('input');
-            nameInput.type = 'text';
-            nameInput.placeholder = 'Medication Name';
-            medicationDiv.appendChild(nameInput);
+    // Create medication name input
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Medication Name';
+    medicationDiv.appendChild(nameInput);
 
-            const daysDiv = document.createElement('div');
-            daysDiv.className = 'days';
-            const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-            days.forEach(day => {
-                const label = document.createElement('label');
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(day));
-                daysDiv.appendChild(label);
-            });
-            medicationDiv.appendChild(daysDiv);
+    // Create days checkboxes
+    const daysDiv = document.createElement('div');
+    daysDiv.className = 'days';
+    const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    days.forEach(day => {
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(day));
+        daysDiv.appendChild(label);
+    });
+    medicationDiv.appendChild(daysDiv);
 
-            const timeSelectWrapper = document.createElement('div');
-            timeSelectWrapper.className = 'time-select';
-            timeSelectWrapper.setAttribute('data-time', 'Morning');
+    // Create time select dropdown
+    const timeSelectWrapper = document.createElement('div');
+    timeSelectWrapper.className = 'time-select-wrapper';
+    const timeSelect = document.createElement('select');
+    const times = ['Morning', 'Day', 'Night'];
+    times.forEach(time => {
+        const option = document.createElement('option');
+        option.value = time;
+        option.textContent = time;
+        timeSelect.appendChild(option);
+    });
+    timeSelectWrapper.appendChild(timeSelect);
+    medicationDiv.appendChild(timeSelectWrapper);
 
-            const timeSelect = document.createElement('select');
-            const times = ['Morning', 'Day', 'Night'];
-            times.forEach(time => {
-                const option = document.createElement('option');
-                option.value = time;
-                option.textContent = time;
-                timeSelect.appendChild(option);
-            });
+    // Create image upload section
+    const formRow = document.createElement('div');
+    formRow.className = 'form-row';
 
-            timeSelect.addEventListener('change', function () {
-                timeSelectWrapper.setAttribute('data-time', this.value);
-            });
+    const fileUploadWrapper = document.createElement('div');
+    fileUploadWrapper.className = 'file-upload-wrapper';
 
-            timeSelectWrapper.appendChild(timeSelect);
-            medicationDiv.appendChild(timeSelectWrapper);
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.className = 'image-upload';
 
-            medicationList.appendChild(medicationDiv);
+    const imagePreview = document.createElement('div');
+    imagePreview.className = 'image-preview';
+
+    const uploadedImage = document.createElement('img');
+    uploadedImage.alt = 'Uploaded Image';
+    uploadedImage.style.display = 'none'; // Hide until an image is uploaded
+    imagePreview.appendChild(uploadedImage);
+
+    fileUploadWrapper.appendChild(fileInput);
+    fileUploadWrapper.appendChild(imagePreview);
+    formRow.appendChild(timeSelectWrapper);
+    formRow.appendChild(fileUploadWrapper);
+    medicationDiv.appendChild(formRow);
+
+    // Append the new medication div to the medication list
+    const medicationList = document.getElementById('medication-list');
+    medicationList.appendChild(medicationDiv);
+
+    // Add event listener for file upload
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            uploadedImage.src = e.target.result;
+            uploadedImage.style.display = 'block'; // Show the uploaded image
+            fileInput.style.display = 'none'; // Hide file input after uploading
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
         }
-
-        function submitLog() {
-            const medications = document.querySelectorAll('.medication');
-            let log = [];
-
-            medications.forEach(med => {
-                const name = med.querySelector('input[type="text"]').value;
-                const days = Array.from(med.querySelectorAll('.days input[type="checkbox"]'))
-                    .map((checkbox, index) => checkbox.checked ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index] : null)
-                    .filter(day => day !== null);
-                const time = med.querySelector('.time-select select').value;
-
-                log.push(`${name} | Days: ${days.join(',')} | Time: ${time}`);
-            });
-
-            const logString = log.join('\n');
-            console.log(logString);
-            alert('Medication log submitted!');
-        }
+    });
+}
 
         const spineTherapy = document.getElementById('spineTherapy');
         const shoulderTherapy = document.getElementById('shoulderTherapy');
