@@ -18,7 +18,6 @@
     <style>
         :root {
             --text-color: #264653;
-
             --color-dark-green: #465C54;
             --color-teal: #90B6B4;
             --color-white: #F6F9F8;
@@ -30,20 +29,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Atkinson Hyperlegible', sans-serif;
         }
 
         body {
-            font-family: Atkinson Hyperlegible, sans-serif;
             background: linear-gradient(to left, var(--color-teal) 50%, var(--color-white) 50%);
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-        }
-
-        p {
-            font-family: Atkinson Hyperlegible, sans-serif;
         }
 
         header {
@@ -55,14 +50,31 @@
             top: 0;
             z-index: 100;
             animation: slideDown 0.5s ease-out;
-
-            display: flex;
         }
 
         .header-image {
             width: 4rem;
             height: auto;
             margin-right: 2rem;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
         }
 
         .header-text {
@@ -98,16 +110,16 @@
             border: var(--color-orange) .25rem solid;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--color-peach);
+        .option-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+        .option-panel img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 2rem;
         }
 
         button {
@@ -118,11 +130,12 @@
             font-size: 1rem;
             border-radius: 0.25rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
             background-color: var(--color-orange);
+            transform: scale(1.05);
         }
 
         .meds-panel,
@@ -158,39 +171,8 @@
             font-weight: bold;
         }
 
-        /*
-
         .option-buttons {
             display: none;
-            flex-direction: column;
-            gap: 1rem;
-
-        }
-
-        #medsButton {
-            background-image: url(meds_penapps_design.png);
-        }
-
-        #ptButton {
-            background-image: url(pt_penapps_design.png);
-        }
-
-        #medsButton,
-        #ptButton {
-            flex: 1;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        #medsButton:hover,
-        #ptButton:hover {
-            background-color: var(--color-white);
-        }
-        */
-        .option-buttons {
-            display: none;
-            /* Kept as requested */
             flex-direction: column;
             gap: 2rem;
             padding: 2rem;
@@ -201,28 +183,21 @@
         #ptButton {
             flex: 1;
             background-color: var(--color-white);
-            /* border: 0.0625rem solid #e0e0e0; */
-            /* 1px to rem */
             border-radius: 0.75rem;
-            /* 12px to rem */
             padding: 2rem;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: box-shadow 0.3s ease;
-            /* min-height: 15.625rem; */
+            transition: transform 0.3s ease;
             min-height: 10rem;
-            /* 250px to rem */
         }
 
         #medsButton::before,
         #ptButton::before {
             content: '';
             width: 12.5rem;
-            /* 200px to rem */
             height: 12.5rem;
-            /* 200px to rem */
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -238,17 +213,9 @@
 
         #medsButton:hover,
         #ptButton:hover {
-            box-shadow: 0 0 0.9375rem rgba(0, 0, 0, 0.1);
-            /* 15px to rem */
+            transform: scale(1.05);
         }
 
-        .right-column {
-            background-color: var(--color-white);
-            border: none;
-            box-shadow: none;
-        }
-
-        /* meds panel */
         #medication-panel {
             width: 300px;
             height: 100vh;
@@ -258,12 +225,10 @@
             overflow-y: auto;
         }
 
-        h2 {
-            margin-top: 0;
-        }
-
         #add-medication {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -271,6 +236,18 @@
             color: var(--color-white);
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #add-medication:hover {
+            background-color: var(--color-orange);
+        }
+
+        #add-medication::before {
+            content: '\f067';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 10px;
         }
 
         .medication {
@@ -278,16 +255,22 @@
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        input,
-        select {
-            width: 100%;
-            padding: 5px;
-            margin-bottom: 5px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .days {
+        /* .days {
             display: flex;
             justify-content: space-between;
             margin-bottom: 5px;
@@ -296,10 +279,28 @@
         .days label {
             display: flex;
             align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color-peach);
+            color: var(--color-white);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
+        .days input[type="checkbox"] {
+            display: none;
+        }
+
+        .days input[type="checkbox"]:checked+label {
+            background-color: var(--color-dark-green);
+        } */
+
         #submit-log {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             padding: 10px;
             margin-top: 20px;
@@ -307,6 +308,44 @@
             color: var(--color-white);
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #submit-log:hover {
+            background-color: var(--color-dark-green);
+        }
+
+        #submit-log::before {
+            content: '\f0c7';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 10px;
+        }
+
+        .time-select {
+            display: flex;
+            align-items: center;
+        }
+
+        .time-select::before {
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 10px;
+        }
+
+        .time-select[data-time="Morning"]::before {
+            content: '\f185';
+            color: var(--color-orange);
+        }
+
+        .time-select[data-time="Day"]::before {
+            content: '\f57e';
+            color: var(--color-teal);
+        }
+
+        .time-select[data-time="Night"]::before {
+            content: '\f186';
+            color: var(--color-dark-green);
         }
     </style>
 </head>
@@ -324,6 +363,7 @@
 
         <section class="right-column option-panel">
             <div class="welcome-buttons">
+                <img src="logo_penapps_design.png" alt="Centered Image">
                 <form id="userForm">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -356,21 +396,16 @@
         </section>
 
         <section class="right-column meds-panel">
-            <!-- <h2>MEDS Information</h2>
-            <p>Details about medication will go here.</p>
-            <button id="backToOptions" class="back-button">Back</button> -->
             <h2>Medication Tracker</h2>
-            <button class="back-button">Back</button>
-            <button id="add-medication">+ Add Medication</button>
+            <button id="add-medication">Add Medication</button>
             <div id="medication-list"></div>
             <button id="submit-log">Submit Log</button>
+            <button class="back-button">Back</button>
         </section>
 
         <section class="right-column pt-panel">
             <h2>PT Information</h2>
             <button class="back-button">Back</button>
-            <p>Details about physical therapy will go here.</p>
-            <button id="backToOptions" class="back-button">Back</button>
         </section>
     </main>
 
@@ -385,68 +420,57 @@
         const optionPanel = document.querySelector('.option-panel');
         const medsPanel = document.querySelector('.meds-panel');
         const ptPanel = document.querySelector('.pt-panel');
-        //const backButton = document.getElementById('backToOptions');
         const backButtons = document.querySelectorAll('.back-button');
-
+        const addMedicationBtn = document.getElementById('add-medication');
+        const medicationList = document.getElementById('medication-list');
+        const submitLogBtn = document.getElementById('submit-log');
+    
         function checkFormCompletion() {
             const allFilled = Array.from(inputs).every(input => input.value !== '');
             startButton.style.display = allFilled ? 'block' : 'none';
         }
-
+    
         inputs.forEach(input => {
             input.addEventListener('input', checkFormCompletion);
         });
-
+    
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             welcomeButtons.style.display = 'none';
             optionButtons.style.display = 'flex';
         });
-
+    
         medsButton.addEventListener('click', function () {
             optionPanel.style.display = 'none';
-            //medsPanel.style.display = 'flex';
             medsPanel.style.display = 'block';
         });
-
+    
         ptButton.addEventListener('click', function () {
             optionPanel.style.display = 'none';
-            //ptPanel.style.display = 'flex';
             ptPanel.style.display = 'block';
         });
-/*
-        backButton.addEventListener('click', function () {
-            medsPanel.style.display = 'none';
-            ptPanel.style.display = 'none';
-            optionButtons.style.display = 'flex';
+    
+        backButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                medsPanel.style.display = 'none';
+                ptPanel.style.display = 'none';
+                optionPanel.style.display = 'block';
+                optionButtons.style.display = 'flex';
+            });
         });
-*/
-
-backButtons.forEach(button => {
-    button.addEventListener('click', function () {
-        medsPanel.style.display = 'none';
-        ptPanel.style.display = 'none';
-        optionPanel.style.display = 'block';
-        optionButtons.style.display = 'flex';
-    });
-});
-        // medication log
-        const addMedicationBtn = document.getElementById('add-medication');
-        const medicationList = document.getElementById('medication-list');
-        const submitLogBtn = document.getElementById('submit-log');
-
+    
         addMedicationBtn.addEventListener('click', addMedication);
         submitLogBtn.addEventListener('click', submitLog);
-
+    
         function addMedication() {
             const medicationDiv = document.createElement('div');
             medicationDiv.className = 'medication';
-
+    
             const nameInput = document.createElement('input');
             nameInput.type = 'text';
             nameInput.placeholder = 'Medication Name';
             medicationDiv.appendChild(nameInput);
-
+    
             const daysDiv = document.createElement('div');
             daysDiv.className = 'days';
             const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
@@ -459,47 +483,44 @@ backButtons.forEach(button => {
                 daysDiv.appendChild(label);
             });
             medicationDiv.appendChild(daysDiv);
-
+    
+            const timeSelectWrapper = document.createElement('div');
+            timeSelectWrapper.className = 'time-select';
+            timeSelectWrapper.setAttribute('data-time', 'Morning');
+    
             const timeSelect = document.createElement('select');
-
-            // Create first option
-            const option1 = document.createElement('option');
-            option1.value = 'Morning';
-            option1.textContent = 'Morning';
-
-            const option2 = document.createElement('option');
-            option2.value = 'Day';
-            option2.textContent = 'Day';
-
-            const option3 = document.createElement('option');
-            option3.value = 'Night';
-            option3.textContent = 'Night';
-
-            timeSelect.appendChild(option1);
-            timeSelect.appendChild(option2);
-            timeSelect.appendChild(option3);
-
-            medicationDiv.appendChild(timeSelect);
-
-
+            const times = ['Morning', 'Day', 'Night'];
+            times.forEach(time => {
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                timeSelect.appendChild(option);
+            });
+    
+            timeSelect.addEventListener('change', function() {
+                timeSelectWrapper.setAttribute('data-time', this.value);
+            });
+    
+            timeSelectWrapper.appendChild(timeSelect);
+            medicationDiv.appendChild(timeSelectWrapper);
+    
             medicationList.appendChild(medicationDiv);
         }
-
+    
         function submitLog() {
             const medications = document.querySelectorAll('.medication');
             let log = [];
-
+    
             medications.forEach(med => {
                 const name = med.querySelector('input[type="text"]').value;
                 const days = Array.from(med.querySelectorAll('.days input[type="checkbox"]'))
                     .map((checkbox, index) => checkbox.checked ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index] : null)
                     .filter(day => day !== null);
-                const frequency = med.querySelector('select').value;
-                const time = med.querySelectorAll('select')[1].value;
-
-                log.push(`${name} | Days: ${days.join(',')} | ${frequency} time(s) per day | Time: ${time}`);
+                const time = med.querySelector('.time-select select').value;
+    
+                log.push(`${name} | Days: ${days.join(',')} | Time: ${time}`);
             });
-
+    
             const logString = log.join('\n');
             console.log(logString);
             alert('Medication log submitted!');
