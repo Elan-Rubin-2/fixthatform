@@ -360,6 +360,7 @@
             <p>Details about medication will go here.</p>
             <button id="backToOptions" class="back-button">Back</button> -->
             <h2>Medication Tracker</h2>
+            <button class="back-button">Back</button>
             <button id="add-medication">+ Add Medication</button>
             <div id="medication-list"></div>
             <button id="submit-log">Submit Log</button>
@@ -367,6 +368,7 @@
 
         <section class="right-column pt-panel">
             <h2>PT Information</h2>
+            <button class="back-button">Back</button>
             <p>Details about physical therapy will go here.</p>
             <button id="backToOptions" class="back-button">Back</button>
         </section>
@@ -383,7 +385,8 @@
         const optionPanel = document.querySelector('.option-panel');
         const medsPanel = document.querySelector('.meds-panel');
         const ptPanel = document.querySelector('.pt-panel');
-        const backButton = document.getElementById('backToOptions');
+        //const backButton = document.getElementById('backToOptions');
+        const backButtons = document.querySelectorAll('.back-button');
 
         function checkFormCompletion() {
             const allFilled = Array.from(inputs).every(input => input.value !== '');
@@ -402,20 +405,31 @@
 
         medsButton.addEventListener('click', function () {
             optionPanel.style.display = 'none';
-            medsPanel.style.display = 'flex';
+            //medsPanel.style.display = 'flex';
+            medsPanel.style.display = 'block';
         });
 
         ptButton.addEventListener('click', function () {
             optionPanel.style.display = 'none';
-            ptPanel.style.display = 'flex';
+            //ptPanel.style.display = 'flex';
+            ptPanel.style.display = 'block';
         });
-
+/*
         backButton.addEventListener('click', function () {
             medsPanel.style.display = 'none';
             ptPanel.style.display = 'none';
             optionButtons.style.display = 'flex';
         });
+*/
 
+backButtons.forEach(button => {
+    button.addEventListener('click', function () {
+        medsPanel.style.display = 'none';
+        ptPanel.style.display = 'none';
+        optionPanel.style.display = 'block';
+        optionButtons.style.display = 'flex';
+    });
+});
         // medication log
         const addMedicationBtn = document.getElementById('add-medication');
         const medicationList = document.getElementById('medication-list');
