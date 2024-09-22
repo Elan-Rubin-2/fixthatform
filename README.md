@@ -28,3 +28,9 @@ Because of the time constraints of the hackathon, we were forced to prioritize c
 
 ## What's next for Dr. Debbie
 Our next two initiatives for Dr. Debbie include converting the application to a mobile app or a Windows desktop application. To reach more users on a more diverse variety of technologies, being able to load Dr. Debbie on your phone or your home computer can be much more convenient for our users. In addition to this, we hope to expand the statistical analysis of Dr. Debbie. To improve the connection between healthcare professionals and patients when they cannot be together in person, Dr. Debbie can provide data to professionals asynchronously helping them stay current with patient status.
+
+## Developers:
+Elan Rubin, 
+Brandon Gorski, 
+Shams Abrar,
+Chibuike Nwume,
