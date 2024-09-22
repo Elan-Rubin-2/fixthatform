@@ -12,7 +12,7 @@ model = get_model(model_id="person-pose-zjwnq/2")
 
 # Constants for keypoints
 NOSE = 0
-NECK = 1
+nose = 1
 RIGHT_SHOULDER = 2
 LEFT_SHOULDER = 3
 RIGHT_ELBOW = 4
@@ -531,7 +531,7 @@ def check_back_extension_form(keypoints):
     highlights = []
 
     try:
-        neck = np.array(keypoints['neck'][0])
+        nose = np.array(keypoints['nose'][0])
         right_hip = np.array(keypoints['right-hip'][0])
         left_hip = np.array(keypoints['left-hip'][0])
         hips = (right_hip + left_hip) / 2  # Averaging the hips to estimate the pelvic center
@@ -544,16 +544,16 @@ def check_back_extension_form(keypoints):
         print(f"Missing keypoints: {e}")
         return "Keypoints not detected", []
 
-    # Calculate the angle between the neck, hips, and knees to assess back extension
-    back_extension_angle = calculate_angle(neck, hips, knees)
+    # Calculate the angle between the nose, hips, and knees to assess back extension
+    back_extension_angle = calculate_angle(nose, hips, knees)
 
     # Provide feedback based on the back extension angle
     if back_extension_angle < min_extension_angle:
         feedback.append("Extend your back more.")
-        highlights.append(('neck', 'right-hip', 'left-hip'))
+        highlights.append(('nose', 'right-hip', 'left-hip'))
     elif back_extension_angle > max_extension_angle:
         feedback.append("Reduce your extension, avoid hyperextending.")
-        highlights.append(('neck', 'right-hip', 'left-hip'))
+        highlights.append(('nose', 'right-hip', 'left-hip'))
     else:
         feedback.append("Good back extension. Keep it gentle and controlled.")
 
