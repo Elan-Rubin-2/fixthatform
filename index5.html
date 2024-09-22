@@ -511,6 +511,21 @@
 .back-button:hover {
     background-color: var(--color-orange);
 }
+
+/*back button fix */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adds space between the two elements */
+}
+
+.form-row select, 
+.form-row input[type="file"] {
+  flex-shrink: 0; /* Ensures the elements don't shrink and stay aligned properly */
+}
+
+
+
     </style>
 </head>
 
@@ -565,7 +580,6 @@
             <button id="add-medication">Add Medication</button>
             <div id="medication-list"></div>
             <button id="submit-log">Submit Log</button>
-            <button class="back-button">Back</button>
 
             <div class="medication">
                 <input type="text" placeholder="Medication Name" class="medication-name">
@@ -580,20 +594,21 @@
                       <label><input type="checkbox"><span>S</span></label>
                       <label><input type="checkbox"><span>S</span></label>
                     </div>
-                    <div class="time-select-wrapper">
-                      <select class="time-select">
-                        <option value="Morning">Morning</option>
-                        <option value="Day">Day</option>
-                        <option value="Night">Night</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="medication-image">
-                    <input type="file" accept="image/*" class="image-upload">
-                    <div class="image-preview"></div>
+                    <div class="form-row">
+                        <div class="time-select" data-time="Morning">
+                          <select>
+                            <option value="Morning">Morning</option>
+                            <option value="Day">Day</option>
+                            <option value="Night">Night</option>
+                          </select>
+                        </div>
+                        <input type="file" accept="image/*" class="image-upload">
+                      </div>
                   </div>
                 </div>
               </div>
+              <button class="back-button">Back</button>
+
         </section>
 
         <section class="right-column pt-panel">
