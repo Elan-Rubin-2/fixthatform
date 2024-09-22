@@ -362,6 +362,155 @@
             accent-color: var(--color-dark-green);
             /* Sets checked to dark green */
         }
+
+        /*extra css by Shams */
+        /* Medication Tracker Styles */
+.meds-panel {
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.meds-panel h2 {
+    color: var(--color-dark-green);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+#add-medication {
+    background-color: var(--color-peach);
+    color: var(--color-white);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+#add-medication:hover {
+    background-color: var(--color-orange);
+}
+
+#add-medication::before {
+    content: '+';
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.medication {
+    background-color: var(--color-teal);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.medication:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.medication input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--color-white);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.days {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.days label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-white);
+    font-size: 0.9rem;
+}
+
+.days input[type="checkbox"] {
+    margin-bottom: 0.25rem;
+}
+
+.time-select {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}
+
+.time-select select {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    padding-right: 1.5rem;
+    appearance: none;
+    cursor: pointer;
+}
+
+.time-select::after {
+    content: '\25BC';
+    font-size: 0.8rem;
+    color: var(--color-dark-green);
+    pointer-events: none;
+    position: absolute;
+    right: 0.75rem;
+}
+
+#submit-log {
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+#submit-log:hover {
+    background-color: var(--color-teal);
+}
+
+#submit-log::before {
+    content: '\2713';
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.back-button {
+    background-color: var(--color-peach);
+    color: var(--color-white);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.back-button:hover {
+    background-color: var(--color-orange);
+}
     </style>
 </head>
 
@@ -417,6 +566,34 @@
             <div id="medication-list"></div>
             <button id="submit-log">Submit Log</button>
             <button class="back-button">Back</button>
+
+            <div class="medication">
+                <input type="text" placeholder="Medication Name" class="medication-name">
+                <div class="medication-details">
+                  <div class="medication-schedule">
+                    <div class="days">
+                      <label><input type="checkbox"><span>M</span></label>
+                      <label><input type="checkbox"><span>T</span></label>
+                      <label><input type="checkbox"><span>W</span></label>
+                      <label><input type="checkbox"><span>T</span></label>
+                      <label><input type="checkbox"><span>F</span></label>
+                      <label><input type="checkbox"><span>S</span></label>
+                      <label><input type="checkbox"><span>S</span></label>
+                    </div>
+                    <div class="time-select-wrapper">
+                      <select class="time-select">
+                        <option value="Morning">Morning</option>
+                        <option value="Day">Day</option>
+                        <option value="Night">Night</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="medication-image">
+                    <input type="file" accept="image/*" class="image-upload">
+                    <div class="image-preview"></div>
+                  </div>
+                </div>
+              </div>
         </section>
 
         <section class="right-column pt-panel">
