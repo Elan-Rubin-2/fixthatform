@@ -270,33 +270,6 @@
             }
         }
 
-        /* .days {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        .days label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: var(--color-peach);
-            color: var(--color-white);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .days input[type="checkbox"] {
-            display: none;
-        }
-
-        .days input[type="checkbox"]:checked+label {
-            background-color: var(--color-dark-green);
-        } */
-
         #submit-log {
             display: flex;
             align-items: center;
@@ -348,13 +321,46 @@
             color: var(--color-dark-green);
         }
 
-        #canvas{
-            
-        }
-        #canvasButton{
+        /* Styling for therapy option buttons */
+        .therapy-options {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .therapy-button {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            background-color: var(--color-teal);
+            color: var(--color-white);
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 0.5rem;
+        }
+
+        .therapy-button:hover {
+            background-color: var(--color-peach);
+        }
+
+        .therapy-button img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            accent-color: var(--color-peach);
+            /* Sets unchecked to yellow */
+            background-color: var(--color-peach);
+        }
+
+        input[type="checkbox"]:checked {
+            accent-color: var(--color-dark-green);
+            /* Sets checked to dark green */
         }
     </style>
 </head>
@@ -368,25 +374,7 @@
         <section class="left-column chatbot-panel">
             <div id="button canvasButton">
                 <canvas id="canvas" width="400" height="400"></canvas>
-                <!-- <div>
-                    <label for="smile">Smile:</label>
-                    <input type="range" id="smile" class="slider" min="0" max="100" step="1" value="50">
-        
-                    <label for="sad">Sad:</label>
-                    <input type="range" id="sad" class="slider" min="0" max="100" step="1" value="50">
-        
-                    <label for="happy">Happy:</label>
-                    <input type="range" id="happy" class="slider" min="0" max="100" step="1" value="50">
-        
-                    <label for="surprise">Surprise:</label>
-                    <input type="range" id="surprise" class="slider" min="0" max="100" step="1" value="50">
-        
-                    <label for="neutral">Neutral:</label>
-                    <input type="range" id="neutral" class="slider" min="0" max="100" step="1" value="50">
-                </div> -->
             </div>
-            <!-- <h2>Chatbot</h2> -->
-            <!-- <p>This is where the chatbot will live.</p> -->
         </section>
 
         <section class="right-column option-panel">
@@ -432,7 +420,25 @@
         </section>
 
         <section class="right-column pt-panel">
-            <h2>PT Information</h2>
+            <h2>Select Therapy Type</h2>
+            <div class="therapy-options">
+                <button class="therapy-button" id="spineTherapy">
+                    <img src="ribs.png" alt="Spinal Therapy">
+                    <p>Spinal Therapy</p>
+                </button>
+                <button class="therapy-button" id="shoulderTherapy">
+                    <img src="shoulder.png" alt="Shoulder Therapy">
+                    <p>Shoulder Therapy</p>
+                </button>
+                <button class="therapy-button" id="hipTherapy">
+                    <img src="hip.png" alt="Hip Therapy">
+                    <p>Hip Therapy</p>
+                </button>
+                <button class="therapy-button" id="kneeTherapy">
+                    <img src="knee.png" alt="Knee Therapy">
+                    <p>Knee Therapy</p>
+                </button>
+            </div>
             <button class="back-button">Back</button>
         </section>
     </main>
@@ -449,9 +455,7 @@
             stateMachines: 'State Machine 1',
             fit: rive.Fit.cover,
             onLoad: (_) => {
-                // Access inputs only after the Rive object is loaded
                 setTimeout(() => {
-                    // Code to be executed after the delay
                     let inputs = r.stateMachineInputs('State Machine 1');
                     console.log(inputs);
 
@@ -463,13 +467,11 @@
 
                     console.log(smileInput, sadInput, happyInput, surpriseInput, neutralInput);
 
-                    // Function to update Rive inputs
                     function updateRiveInput(input, value) {
                         console.log(input, value)
                         input['value'] = value;
                     }
 
-                    // Add event listeners to sliders (uncommented)
                     document.getElementById('smile').addEventListener('input', (e) => {
                         console.log("Event: ", 'Smile');
                         updateRiveInput(smileInput, e.target.value);
@@ -494,7 +496,6 @@
                         console.log("Event: ", 'neutral');
                         updateRiveInput(neutralInput, e.target.value);
                     });
-                    console.log("Hello after 5 seconds");
                 }, 2000);
             },
         });
@@ -525,32 +526,32 @@
         const addMedicationBtn = document.getElementById('add-medication');
         const medicationList = document.getElementById('medication-list');
         const submitLogBtn = document.getElementById('submit-log');
-    
+
         function checkFormCompletion() {
             const allFilled = Array.from(inputs).every(input => input.value !== '');
             startButton.style.display = allFilled ? 'block' : 'none';
         }
-    
+
         inputs.forEach(input => {
             input.addEventListener('input', checkFormCompletion);
         });
-    
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             welcomeButtons.style.display = 'none';
             optionButtons.style.display = 'flex';
         });
-    
+
         medsButton.addEventListener('click', function () {
             optionPanel.style.display = 'none';
             medsPanel.style.display = 'block';
         });
-    
+
         ptButton.addEventListener('click', function () {
             optionPanel.style.display = 'none';
             ptPanel.style.display = 'block';
         });
-    
+
         backButtons.forEach(button => {
             button.addEventListener('click', function () {
                 medsPanel.style.display = 'none';
@@ -559,19 +560,19 @@
                 optionButtons.style.display = 'flex';
             });
         });
-    
+
         addMedicationBtn.addEventListener('click', addMedication);
         submitLogBtn.addEventListener('click', submitLog);
-    
+
         function addMedication() {
             const medicationDiv = document.createElement('div');
             medicationDiv.className = 'medication';
-    
+
             const nameInput = document.createElement('input');
             nameInput.type = 'text';
             nameInput.placeholder = 'Medication Name';
             medicationDiv.appendChild(nameInput);
-    
+
             const daysDiv = document.createElement('div');
             daysDiv.className = 'days';
             const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
@@ -584,11 +585,11 @@
                 daysDiv.appendChild(label);
             });
             medicationDiv.appendChild(daysDiv);
-    
+
             const timeSelectWrapper = document.createElement('div');
             timeSelectWrapper.className = 'time-select';
             timeSelectWrapper.setAttribute('data-time', 'Morning');
-    
+
             const timeSelect = document.createElement('select');
             const times = ['Morning', 'Day', 'Night'];
             times.forEach(time => {
@@ -597,35 +598,60 @@
                 option.textContent = time;
                 timeSelect.appendChild(option);
             });
-    
-            timeSelect.addEventListener('change', function() {
+
+            timeSelect.addEventListener('change', function () {
                 timeSelectWrapper.setAttribute('data-time', this.value);
             });
-    
+
             timeSelectWrapper.appendChild(timeSelect);
             medicationDiv.appendChild(timeSelectWrapper);
-    
+
             medicationList.appendChild(medicationDiv);
         }
-    
+
         function submitLog() {
             const medications = document.querySelectorAll('.medication');
             let log = [];
-    
+
             medications.forEach(med => {
                 const name = med.querySelector('input[type="text"]').value;
                 const days = Array.from(med.querySelectorAll('.days input[type="checkbox"]'))
                     .map((checkbox, index) => checkbox.checked ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index] : null)
                     .filter(day => day !== null);
                 const time = med.querySelector('.time-select select').value;
-    
+
                 log.push(`${name} | Days: ${days.join(',')} | Time: ${time}`);
             });
-    
+
             const logString = log.join('\n');
             console.log(logString);
             alert('Medication log submitted!');
         }
+
+        const spineTherapy = document.getElementById('spineTherapy');
+        const shoulderTherapy = document.getElementById('shoulderTherapy');
+        const hipTherapy = document.getElementById('hipTherapy');
+        const kneeTherapy = document.getElementById('kneeTherapy');
+
+        spineTherapy.addEventListener('click', function () {
+            // Logic to load spinal therapy details
+            alert("Spinal Therapy Selected");
+        });
+
+        shoulderTherapy.addEventListener('click', function () {
+            // Logic to load shoulder therapy details
+            alert("Shoulder Therapy Selected");
+        });
+
+        hipTherapy.addEventListener('click', function () {
+            // Logic to load hip therapy details
+            alert("Hip Therapy Selected");
+        });
+
+        kneeTherapy.addEventListener('click', function () {
+            // Logic to load knee therapy details
+            alert("Knee Therapy Selected");
+        });
     </script>
 </body>
 
