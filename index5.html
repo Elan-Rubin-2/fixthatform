@@ -13,7 +13,7 @@
         rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/2b9cdc1c9a.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="logo_penapps_design.png">
+    <link rel="icon" type="image/x-icon" href="./static/logo_penapps_design.png">
 
     <style>
         :root {
@@ -204,11 +204,11 @@
         }
 
         #medsButton::before {
-            background-image: url(meds_penapps_design.png);
+            background-image: url(./static/meds_penapps_design.png);
         }
 
         #ptButton::before {
-            background-image: url(pt_penapps_design.png);
+            background-image: url(./static/pt_penapps_design.png);
         }
 
         #medsButton:hover,
@@ -367,20 +367,43 @@
 
 <body>
     <header class="header">
-        <img src="logo_penapps_design.png" class="header-image">
+        <img src="./static/logo_penapps_design.png" class="header-image">
         <h1 class="header-text">Dr. Debbie</h1>
     </header>
     <main>
         <section class="left-column chatbot-panel">
             <div id="button canvasButton">
-                <canvas id="canvas" width="400" height="400"></canvas>
+                <canvas id="canvas" width="200" height="200"></canvas>
+            </div>
+            <div class="chatbot-container"></div>
+                <div id="stt">
+                    <button onClick="GetSpeech()">Mic</button>
+                </div>
+                <div id="chatOuter" style="clear: both;"></div>
+                <div id="chatName">
+                    Smart Chat
+                </div>
+                <select></select>
+                <div>
+                    <input type="text" id="chatInp" name="name" placeholder="Type your question here.">
+                </div>
+                <div id="chatSend">
+                    <button id="chatSendBtn" onclick="sendBotRes();">
+                        Send
+                    </button>
+                </div>
+                <br>
+                <div id="chatResponse"></div>
+                <br>
+                <button id="tts-button">Speak</button>
+                <br>
             </div>
         </section>
 
         <section class="right-column option-panel">
             <div class="welcome-buttons">
-                <img src="logo_penapps_design.png" alt="Centered Image">
-                <form id="userForm">
+                <img src="./static/logo_penapps_design.png" alt="Centered Image">
+                <form id="userForm" action="/get_user_info">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
 
@@ -402,13 +425,14 @@
                         <option value="other">Other</option>
                     </select>
 
-                    <button type="submit" id="startButton" style="display: none;">Let's get started!</button>
+                    <button type="submit" id="startButton" style="display: none;" >Let's get started!</button>
                 </form>
             </div>
             <div class="option-buttons">
                 <button id="medsButton"></button>
                 <button id="ptButton"></button>
             </div>
+            
         </section>
 
         <section class="right-column meds-panel">
@@ -423,19 +447,19 @@
             <h2>Select Therapy Type</h2>
             <div class="therapy-options">
                 <button class="therapy-button" id="spineTherapy">
-                    <img src="ribs.png" alt="Spinal Therapy">
+                    <img src="./static/ribs.png" alt="Spinal Therapy">
                     <p>Spinal Therapy</p>
                 </button>
                 <button class="therapy-button" id="shoulderTherapy">
-                    <img src="shoulder.png" alt="Shoulder Therapy">
+                    <img src="./static/shoulder.png" alt="Shoulder Therapy">
                     <p>Shoulder Therapy</p>
                 </button>
                 <button class="therapy-button" id="hipTherapy">
-                    <img src="hip.png" alt="Hip Therapy">
+                    <img src="./static/hip.png" alt="Hip Therapy">
                     <p>Hip Therapy</p>
                 </button>
                 <button class="therapy-button" id="kneeTherapy">
-                    <img src="knee.png" alt="Knee Therapy">
+                    <img src="./static/knee.png" alt="Knee Therapy">
                     <p>Knee Therapy</p>
                 </button>
             </div>
@@ -653,6 +677,9 @@
             alert("Knee Therapy Selected");
         });
     </script>
+    <script src="./static/stt.js"></script>
+    <script src="./static/tts.js"></script>
+    <script src="./static/chatbotUtil.js"></script>
 </body>
 
 </html>
