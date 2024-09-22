@@ -347,6 +347,10 @@
             content: '\f186';
             color: var(--color-dark-green);
         }
+
+        #canvas{
+            
+        }
     </style>
 </head>
 
@@ -357,8 +361,27 @@
     </header>
     <main>
         <section class="left-column chatbot-panel">
-            <h2>Chatbot</h2>
-            <p>This is where the chatbot will live.</p>
+            <div id="button">
+                <canvas id="canvas" width="400" height="400"></canvas>
+                <!-- <div>
+                    <label for="smile">Smile:</label>
+                    <input type="range" id="smile" class="slider" min="0" max="100" step="1" value="50">
+        
+                    <label for="sad">Sad:</label>
+                    <input type="range" id="sad" class="slider" min="0" max="100" step="1" value="50">
+        
+                    <label for="happy">Happy:</label>
+                    <input type="range" id="happy" class="slider" min="0" max="100" step="1" value="50">
+        
+                    <label for="surprise">Surprise:</label>
+                    <input type="range" id="surprise" class="slider" min="0" max="100" step="1" value="50">
+        
+                    <label for="neutral">Neutral:</label>
+                    <input type="range" id="neutral" class="slider" min="0" max="100" step="1" value="50">
+                </div> -->
+            </div>
+            <!-- <h2>Chatbot</h2> -->
+            <!-- <p>This is where the chatbot will live.</p> -->
         </section>
 
         <section class="right-column option-panel">
@@ -409,6 +432,79 @@
         </section>
     </main>
 
+
+    <script src="https://unpkg.com/@rive-app/canvas@2.1.0"></script>
+    <script>
+        const riveFilePath = 'https://ucarecdn.com/b4c208f8-0f4d-45f0-98cf-aad85f70b363/';
+
+        let r = new rive.Rive({
+            src: riveFilePath,
+            canvas: document.getElementById('canvas'),
+            autoplay: true,
+            stateMachines: 'State Machine 1',
+            fit: rive.Fit.cover,
+            onLoad: (_) => {
+                // Access inputs only after the Rive object is loaded
+                setTimeout(() => {
+                    // Code to be executed after the delay
+                    let inputs = r.stateMachineInputs('State Machine 1');
+                    console.log(inputs);
+
+                    let smileInput = inputs.find(input => input['name'] === 'Smile');
+                    let sadInput = inputs.find(input => input['name'] === 'Sad');
+                    let happyInput = inputs.find(input => input['name'] === 'Happy');
+                    let surpriseInput = inputs.find(input => input['name'] === 'Surprise');
+                    let neutralInput = inputs.find(input => input['name'] === 'Neutral');
+
+                    console.log(smileInput, sadInput, happyInput, surpriseInput, neutralInput);
+
+                    // Function to update Rive inputs
+                    function updateRiveInput(input, value) {
+                        console.log(input, value)
+                        input['value'] = value;
+                    }
+
+                    // Add event listeners to sliders (uncommented)
+                    document.getElementById('smile').addEventListener('input', (e) => {
+                        console.log("Event: ", 'Smile');
+                        updateRiveInput(smileInput, e.target.value);
+                    });
+
+                    document.getElementById('sad').addEventListener('input', (e) => {
+                        console.log("Event: ", 'sad');
+                        updateRiveInput(sadInput, e.target.value);
+                    });
+
+                    document.getElementById('happy').addEventListener('input', (e) => {
+                        console.log("Event: ", 'happy');
+                        updateRiveInput(happyInput, e.target.value);
+                    });
+
+                    document.getElementById('surprise').addEventListener('input', (e) => {
+                        console.log("Event: ", 'surprise');
+                        updateRiveInput(surpriseInput, e.target.value);
+                    });
+
+                    document.getElementById('neutral').addEventListener('input', (e) => {
+                        console.log("Event: ", 'neutral');
+                        updateRiveInput(neutralInput, e.target.value);
+                    });
+                    console.log("Hello after 5 seconds");
+                }, 5000);
+            },
+        });
+
+        // Render loop
+        // function renderLoop() {
+        //     r.advance();
+        //     r.draw();
+        //     requestAnimationFrame(renderLoop);
+        // }
+
+        // requestAnimationFrame(renderLoop);
+
+
+    </script>
     <script>
         const medsButton = document.getElementById('medsButton');
         const ptButton = document.getElementById('ptButton');
