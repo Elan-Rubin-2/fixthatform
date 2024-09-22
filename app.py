@@ -42,10 +42,10 @@ def getUser():
             name = data["name"]
             age = data["age"]
             sex = data["sex"]
-            inp = f"Hi. My name ius"
+            inp = f"Hi. My name is {name}. I am {age} years of age and my gender is {sex}"
         except Exception as e:
             print("Error caught:", e)
-            return jsonify({"message": "failed to parse input"}), 400
+            return jsonify(data), 400
 
     res = testModel.getResponse(inp)
     return jsonify({'response':res,'inp':inp})
