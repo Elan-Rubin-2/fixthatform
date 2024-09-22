@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rive Animation with Emotion Sliders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+
+        .slider {
+            margin: 20px;
+        }
+    </style>
+    <script src="https://unpkg.com/@rive-app/canvas@2.9.1"></script>
+</head>
+
+<body>
+    <h1>Emotion Animation</h1>
+    <canvas id="riveCanvas" width="500" height="500"></canvas>
+    <div>
+        <label for="smile">Smile:</label>
+        <input type="range" id="smile" class="slider" min="0" max="100" step="1" value="50">
+
+        <label for="sad">Sad:</label>
+        <input type="range" id="sad" class="slider" min="0" max="100" step="1" value="50">
+
+        <label for="happy">Happy:</label>
+        <input type="range" id="happy" class="slider" min="0" max="100" step="1" value="50">
+
+        <label for="surprise">Surprise:</label>
+        <input type="range" id="surprise" class="slider" min="0" max="100" step="1" value="50">
+
+        <label for="neutral">Neutral:</label>
+        <input type="range" id="neutral" class="slider" min="0" max="100" step="1" value="50">
+    </div>
+    <script>
+        async function main() {
+            const canvas = document.getElementById('riveCanvas');
+            const riveFilePath = 'C:\\Users\\chees\\PennApps_Fall_2024\\fixthatform\\facial_expression_demo(3).riv';
+
+            // Load the Rive file
+            const riveFileBytes = await (await fetch(new Request(riveFilePath))).arrayBuffer();
+            const rive = await rive.Rive.new({
+                buffer: riveFileBytes,
+                canvas: canvas,
+                autoplay: true,
+                stateMachines: ['State Machine 1'], // Replace with your actual state machine name
+                onLoad: () => {
+                    console.log('Rive file loaded successfully');
+                }
+            });
+
+            // Get the artboard and state machine
+            const artboard = rive.artboard;
+            const stateMachine = rive.stateMachineInstances[0];
+
+            if (!stateMachine) {
+                console.error('State machine could not be found.');
+                return;
+            }
+
+            // Get the inputs
+            const smileInput = stateMachine.inputs.find(input => input.name === 'smile');
+            const sadInput = stateMachine.inputs.find(input => input.name === 'sad');
+            const happyInput = stateMachine.inputs.find(input => input.name === 'happy');
+            const surpriseInput = stateMachine.inputs.find(input => input.name === 'surprise');
+            const neutralInput = stateMachine.inputs.find(input => input.name === 'neutral');
+
+            // Function to update Rive inputs
+            function updateRiveInput(input, value) {
+                if (input && input instanceof rive.NumberInput) {
+                    input.value = value;
+                }
+            }
+
+            // Add event listeners to sliders
+            document.getElementById('smile').addEventListener('input', (e) => {
+                updateRiveInput(smileInput, e.target.value / 100);
+            });
+
+            document.getElementById('sad').addEventListener('input', (e) => {
+                updateRiveInput(sadInput, e.target.value / 100);
+            });
+
+            document.getElementById('happy').addEventListener('input', (e) => {
+                updateRiveInput(happyInput, e.target.value / 100);
+            });
+
+            document.getElementById('surprise').addEventListener('input', (e) => {
+                updateRiveInput(surpriseInput, e.target.value / 100);
+            });
+
+            document.getElementById('neutral').addEventListener('input', (e) => {
+                updateRiveInput(neutralInput, e.target.value / 100);
+            });
+
+            // Render loop
+            function renderLoop() {
+                rive.advance();
+                rive.draw();
+                requestAnimationFrame(renderLoop);
+            }
+
+            requestAnimationFrame(renderLoop);
+        }
+
+        main();
+    </script>
+</body>
+
+</html>
