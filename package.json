@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@rive-app/canvas": "^2.21.2",
+    "@rive-app/canvas-advanced-single": "^2.21.2"
+  }
+}
