@@ -1,0 +1,9 @@
+opencv-python
+numpy
+requests
+imutils
+mediapipe
+inference
+supervision
+flask
+cerebras.cloud.sdk

@@ -40,7 +40,6 @@
             fit: rive.Fit.cover,
             onLoad: (_) => {
                 // Access inputs only after the Rive object is loaded
-                setTimeout(() => {
                     // Code to be executed after the delay
                     let inputs = r.stateMachineInputs('State Machine 1');
                     console.log(inputs);
@@ -85,19 +84,8 @@
                         updateRiveInput(neutralInput, e.target.value);
                     });
                     console.log("Hello after 5 seconds");
-                }, 5000);
             },
         });
-
-        // Render loop
-        // function renderLoop() {
-        //     r.advance();
-        //     r.draw();
-        //     requestAnimationFrame(renderLoop);
-        // }
-
-        // requestAnimationFrame(renderLoop);
-
 
     </script>
 </body>
