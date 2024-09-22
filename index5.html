@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PLACEHOLDER TITLE</title>
+    <title>Dr. Debbie</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,6 @@
     <style>
         :root {
             --text-color: #264653;
-            --white: #ffffff;
 
             --color-dark-green: #465C54;
             --color-teal: #90B6B4;
@@ -93,7 +92,7 @@
         }
 
         .right-column {
-            background-color: var(--white);
+            background-color: var(--color-white);
             border-radius: 1rem;
             animation: slideInRight 0.5s ease-out;
             border: var(--color-orange) .25rem solid;
@@ -113,7 +112,7 @@
 
         button {
             background-color: var(--color-peach);
-            color: var(--white);
+            color: var(--color-white);
             border: none;
             padding: 0.75rem 1rem;
             font-size: 1rem;
@@ -158,6 +157,7 @@
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
+
         /*
 
         .option-buttons {
@@ -189,56 +189,64 @@
         }
         */
         .option-buttons {
-    display: none;  /* Kept as requested */
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-    background-color: white;
-}
+            display: none;
+            /* Kept as requested */
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+            background-color: var(--color-white);
+        }
 
-#medsButton,
-#ptButton {
-    flex: 1;
-    background-color: white;
-    border: 0.0625rem solid #e0e0e0;  /* 1px to rem */
-    border-radius: 0.75rem;  /* 12px to rem */
-    padding: 2rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: box-shadow 0.3s ease;
-    min-height: 15.625rem;  /* 250px to rem */
-}
+        #medsButton,
+        #ptButton {
+            flex: 1;
+            background-color: var(--color-white);
+            /* border: 0.0625rem solid #e0e0e0; */
+            /* 1px to rem */
+            border-radius: 0.75rem;
+            /* 12px to rem */
+            padding: 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+            /* min-height: 15.625rem; */
+            min-height: 10rem;
+            /* 250px to rem */
+        }
 
-#medsButton::before,
-#ptButton::before {
-    content: '';
-    width: 12.5rem;  /* 200px to rem */
-    height: 12.5rem;  /* 200px to rem */
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        #medsButton::before,
+        #ptButton::before {
+            content: '';
+            width: 12.5rem;
+            /* 200px to rem */
+            height: 12.5rem;
+            /* 200px to rem */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
 
-#medsButton::before {
-    background-image: url(meds_penapps_design.png);
-}
+        #medsButton::before {
+            background-image: url(meds_penapps_design.png);
+        }
 
-#ptButton::before {
-    background-image: url(pt_penapps_design.png);
-}
+        #ptButton::before {
+            background-image: url(pt_penapps_design.png);
+        }
 
-#medsButton:hover,
-#ptButton:hover {
-    box-shadow: 0 0 0.9375rem rgba(0,0,0,0.1);  /* 15px to rem */
-}
+        #medsButton:hover,
+        #ptButton:hover {
+            box-shadow: 0 0 0.9375rem rgba(0, 0, 0, 0.1);
+            /* 15px to rem */
+        }
 
-.right-column {
-    background-color: white;
-    border: none;
-    box-shadow: none;
-}
+        .right-column {
+            background-color: var(--color-white);
+            border: none;
+            box-shadow: none;
+        }
 
         /* meds panel */
         #medication-panel {
@@ -306,7 +314,7 @@
 <body>
     <header class="header">
         <img src="logo_penapps_design.png" class="header-image">
-        <h1 class="header-text">PLACEHOLDER TITLE</h1>
+        <h1 class="header-text">Dr. Debbie</h1>
     </header>
     <main>
         <section class="left-column chatbot-panel">
@@ -316,7 +324,6 @@
 
         <section class="right-column option-panel">
             <div class="welcome-buttons">
-                <h2>Get Started</h2>
                 <form id="userForm">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -440,16 +447,26 @@
             medicationDiv.appendChild(daysDiv);
 
             const timeSelect = document.createElement('select');
+
+            // Create first option
             const option1 = document.createElement('option');
             option1.value = 'Morning';
+            option1.textContent = 'Morning';
+
             const option2 = document.createElement('option');
-            option1.value = 'Day';
+            option2.value = 'Day';
+            option2.textContent = 'Day';
+
             const option3 = document.createElement('option');
-            option1.value = 'Night';
+            option3.value = 'Night';
+            option3.textContent = 'Night';
+
             timeSelect.appendChild(option1);
             timeSelect.appendChild(option2);
             timeSelect.appendChild(option3);
+
             medicationDiv.appendChild(timeSelect);
+
 
             medicationList.appendChild(medicationDiv);
         }
@@ -470,7 +487,7 @@
             });
 
             const logString = log.join('\n');
-            console.log(logString); 
+            console.log(logString);
             alert('Medication log submitted!');
         }
     </script>
