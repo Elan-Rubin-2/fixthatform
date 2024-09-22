@@ -322,11 +322,7 @@
         }
 
         /* Styling for therapy option buttons */
-        .therapy-options {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-        }
+
 
         .therapy-button {
             display: flex;
@@ -524,6 +520,330 @@
   flex-shrink: 0; /* Ensures the elements don't shrink and stay aligned properly */
 }
 
+#submit-log {
+  margin-bottom: 1.5rem; /* Adds space below the submit button */
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem; /* Adjust the gap as needed */
+}
+
+.medication-box {
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-preview {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview img {
+  max-width: 100%;  /* Ensure the image doesn't overflow */
+  height: auto;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.form-row {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: space-between; /* Ensures the content is spaced properly */
+  gap: 1rem; /* Space between the dropdown and image upload */
+  margin-top: 1rem; /* Add spacing above */
+}
+
+.time-select-wrapper {
+  flex: 1; /* Takes most of the available space */
+}
+
+.image-upload-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-upload-wrapper input[type="file"] {
+  margin-bottom: 0.5rem;
+}
+
+.image-preview img {
+  width: 100px; /* Control the size of the uploaded image */
+  height: auto;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adjusts the space between the dropdown and file upload */
+  margin-top: 1rem;
+}
+
+.time-select-wrapper {
+  flex: 1; /* Takes up the available space for the dropdown */
+}
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.file-upload-wrapper input[type="file"] {
+  margin-bottom: 0.5rem; /* Space between file input and image preview */
+}
+
+.image-preview img {
+  width: 100px; /* Set consistent size for image */
+  height: auto;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for aesthetics */
+}
+
+/* Optional improvements */
+.select, .image-upload-wrapper input {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between the dropdown and file upload */
+  margin-top: 1rem;
+}
+
+.time-select-wrapper {
+  flex-shrink: 0; /* Prevent the dropdown from expanding */
+  width: 150px; /* Set a fixed width for the dropdown */
+}
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.file-upload-wrapper input[type="file"] {
+  margin-bottom: 0.5rem; /* Space between file input and image preview */
+}
+
+.image-preview img {
+  width: 100px; /* Set consistent size for image */
+  height: auto;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for aesthetics */
+}
+.therapy-options {
+  display: flex;
+  justify-content: space-around; /* Evenly distribute buttons across the width */
+  gap: 2rem; /* Space between each button */
+  padding: 2rem;
+  flex-wrap: wrap; /* Wrap the buttons to the next line if necessary */
+}
+
+.therapy-button {
+  flex: 1; /* Allow buttons to expand equally */
+  max-width: 220px; /* Set a maximum width for larger screens */
+  height: 250px; /* Set a consistent height for each button */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.therapy-button img {
+  width: 100px; /* Control image size */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.therapy-button p {
+  font-size: 1.2rem;
+}
+
+.therapy-button:hover {
+  background-color: var(--color-peach); /* Change background on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.therapy-options {
+  display: flex;
+  justify-content: space-around; /* Evenly distribute the buttons */
+  gap: 2rem; /* Space between the buttons */
+  padding: 2rem;
+}
+
+.therapy-button {
+  flex: 1; /* Allow the buttons to grow equally */
+  max-width: 300px; /* Set a maximum width for larger screens */
+  height: 250px; /* Fixed height for the buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.therapy-button img {
+  width: 120px; /* Increase the size of the image */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.therapy-button p {
+  font-size: 1.2rem;
+}
+
+.therapy-button:hover {
+  background-color: var(--color-peach); /* Hover effect */
+  transform: scale(1.05); /* Slight scaling on hover */
+}
+
+.therapy-options {
+  display: flex;
+  justify-content: space-between; /* Distribute space between buttons evenly */
+  gap: 1rem; /* Reduce the gap for more fitting width */
+  padding: 2rem;
+}
+
+.therapy-button {
+  flex: 1; /* Allow the buttons to grow and take up equal space */
+  max-width: 33%; /* Allow each button to take up roughly a third of the container */
+  height: 300px; /* Increase the button height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.therapy-button img {
+  width: 150px; /* Increase image size */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.therapy-button p {
+  font-size: 1.5rem; /* Make text larger */
+}
+
+.therapy-button:hover {
+  background-color: var(--color-peach); /* Hover effect */
+  transform: scale(1.05); /* Slight scaling on hover */
+}
+
+.therapy-options {
+  display: flex;
+  justify-content: space-between; /* Ensure equal spacing between the buttons */
+  gap: 1rem; /* Minimal gap between buttons */
+  padding: 2rem;
+}
+
+.therapy-button {
+  flex: 1; /* Allow each button to take equal space */
+  height: 350px; /* Set a consistent height for the buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.therapy-button img {
+  width: 150px; /* Set the size of the image */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.therapy-button p {
+  font-size: 1.5rem; /* Increase the size of the text */
+}
+
+.therapy-button:hover {
+  background-color: var(--color-peach); /* Hover effect */
+  transform: scale(1.05); /* Slight scaling on hover */
+}
+
+.therapy-options {
+  display: flex;
+  justify-content: space-between; /* Spread buttons across the container evenly */
+  gap: 1rem; /* Small gap between buttons */
+  padding: 2rem;
+}
+
+.therapy-button {
+  flex: 1; /* Allow each button to take equal space */
+  max-width: 30%; /* Set a max width to ensure all buttons fit on the same line */
+  height: 350px; /* Consistent height for each button */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.therapy-button img {
+  width: 120px; /* Adjust image size */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.therapy-button p {
+  font-size: 1.3rem; /* Increase text size slightly */
+}
+
+.therapy-button:hover {
+  background-color: var(--color-peach); /* Hover effect */
+  transform: scale(1.05); /* Slight scaling on hover */
+}
+
 
 
     </style>
@@ -595,15 +915,25 @@
                       <label><input type="checkbox"><span>S</span></label>
                     </div>
                     <div class="form-row">
-                        <div class="time-select" data-time="Morning">
-                          <select>
-                            <option value="Morning">Morning</option>
-                            <option value="Day">Day</option>
-                            <option value="Night">Night</option>
-                          </select>
+                        <div class="time-select-wrapper">
+                          <div class="time-select" data-time="Night">
+                            <select>
+                              <option value="Morning">Morning</option>
+                              <option value="Day">Day</option>
+                              <option value="Night" selected>Night</option>
+                            </select>
+                          </div>
                         </div>
-                        <input type="file" accept="image/*" class="image-upload">
+                        <div class="file-upload-wrapper">
+                          <input type="file" accept="image/*" class="image-upload">
+                          <div class="image-preview">
+                            <img id="uploaded-image" src="" alt="Uploaded Image" />
+                          </div>
+                        </div>
                       </div>
+                      
+                      
+                      
                   </div>
                 </div>
               </div>
@@ -615,22 +945,19 @@
             <h2>Select Therapy Type</h2>
             <div class="therapy-options">
                 <button class="therapy-button" id="spineTherapy">
-                    <img src="ribs.png" alt="Spinal Therapy">
-                    <p>Spinal Therapy</p>
+                  <img src="ribs.png" alt="Spinal Therapy">
+                  <p>Spinal Therapy</p>
                 </button>
                 <button class="therapy-button" id="shoulderTherapy">
-                    <img src="shoulder.png" alt="Shoulder Therapy">
-                    <p>Shoulder Therapy</p>
+                  <img src="shoulder.png" alt="Shoulder Therapy">
+                  <p>Shoulder Therapy</p>
                 </button>
                 <button class="therapy-button" id="hipTherapy">
-                    <img src="hip.png" alt="Hip Therapy">
-                    <p>Hip Therapy</p>
+                  <img src="hip.png" alt="Hip Therapy">
+                  <p>Hip Therapy</p>
                 </button>
-                <button class="therapy-button" id="kneeTherapy">
-                    <img src="knee.png" alt="Knee Therapy">
-                    <p>Knee Therapy</p>
-                </button>
-            </div>
+              </div>
+              
             <button class="back-button">Back</button>
         </section>
     </main>
@@ -844,6 +1171,22 @@
             // Logic to load knee therapy details
             alert("Knee Therapy Selected");
         });
+document.querySelector('.image-upload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const uploadedImage = document.getElementById('uploaded-image');
+        uploadedImage.src = e.target.result;  // Set the uploaded image to the img element
+        document.querySelector('.image-upload').style.display = 'none';
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+});
+
+
     </script>
 </body>
 
