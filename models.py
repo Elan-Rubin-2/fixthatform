@@ -21,18 +21,14 @@ class CerebrasModel:
                     model=self.model_id,
         )
         res = chat_completion.choices[0].message.content
-        
+        complete = (res[-1]=='.' or res[-1]=='?')
+        if not complete and res!=None:
+            revv = res[::-1]
+            li = len(res)-revv.index('.')
+            res = res[:li]
+
         self.history.append({
             "role":"assistant",
             "content":res,})
-        
+
         return res
-class MedCerebrasModel(CerebrasModel):
-    def __init__(self,med_schedule,model_id,client=Cerebras(
-    # This is the default and can be omitted
-    api_key='csk-xd8t5rj64mmk6j969t2hn26henttx5xc3jhh3jt9m9px8rkm'
-)) -> None:
-        super.__init__(model_id,client)
-        self.med_schedule = med_schedule
-        
-    

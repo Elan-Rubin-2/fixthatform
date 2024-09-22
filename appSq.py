@@ -101,7 +101,7 @@ def gen_frames():
             # elif exc == 'leg-raises':
             #     frame = LegRaiseDetectPerFrame(frame)
             # elif exc == 'thoracic-extensions':
-            frame = BackExtensionDetectPerFrame(frame)
+            frame = SquatDetectPerFrame(frame)
             # elif exc == 'shoulder-press':
             #     frame = ShoulderPressDetectPerFrame(frame)
             # elif exc == 'shoulder-raise':
